@@ -12,6 +12,10 @@ class TodoList extends Component {
         this.state = store.getState();
         //关键代码-----------end
         this.changeInputValue = this.changeInputValue.bind(this)
+        //----------关键代码-----------start
+        this.storeChange = this.storeChange.bind(this)  //转变this指向
+        store.subscribe(this.storeChange) //订阅Redux的状态
+        //----------关键代码-----------end
     }
     render() {
         return (
@@ -39,7 +43,15 @@ class TodoList extends Component {
     }
 
     changeInputValue(e) {
-        console.log(e.target.value)
+        const action = {
+            type: 'changeInput',
+            value: e.target.value
+        }
+        store.dispatch(action)
+    }
+
+    storeChange() {
+        this.setState(store.getState())
     }
 }
 export default TodoList;
