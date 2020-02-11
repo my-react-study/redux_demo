@@ -17,5 +17,10 @@ export default (state = defaultState, action) => {//就是一个方法函数
         newState.inputValue = ''
         return newState
     }
+    if (action.type === 'deleteItem') {
+        let newState = JSON.parse(JSON.stringify(state)) //深度拷贝state
+        newState.list.splice(action.index)
+        return newState
+    }
     return state
 }
