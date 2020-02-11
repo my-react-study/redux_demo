@@ -11,14 +11,18 @@ class TodoList extends Component {
         //关键代码-----------start
         this.state = store.getState();
         //关键代码-----------end
-        console.log(this.state)
+        this.changeInputValue = this.changeInputValue.bind(this)
     }
     render() {
         return (
             <div style={{ margin: '10px' }}>
                 <div>
 
-                    <Input placeholder={this.state.inputValue} style={{ width: '250px', marginRight: '10px' }} />
+                    <Input
+                        placeholder={this.state.inputValue}
+                        style={{ width: '250px', marginRight: '10px' }}
+                        onChange={this.changeInputValue}
+                    />
                     <Button type="primary">增加</Button>
                 </div>
                 <div style={{ margin: '10px', width: '300px' }}>
@@ -32,6 +36,10 @@ class TodoList extends Component {
                 </div>
             </div>
         );
+    }
+
+    changeInputValue(e) {
+        console.log(e.target.value)
     }
 }
 export default TodoList;
