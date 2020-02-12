@@ -8,6 +8,7 @@ const defaultState = {
     ]
 }  //默认数据
 export default (state = defaultState, action) => {//就是一个方法函数
+    //Reducer里只能接受state，不能传递state
     if (action.type === CHANGE_INPUT) {
         let newState = JSON.parse(JSON.stringify(state)) //深度拷贝state
         newState.inputValue = action.value
