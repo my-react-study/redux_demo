@@ -1,35 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd'
-
-class TodoListUI extends Component {
-
-    render() {
-        return (<div style={{ margin: '10px' }}>
+const TodoListUI = (props) => {
+    return (
+        <div style={{ margin: '10px' }}>
             <div>
-
                 <Input
-                    placeholder={this.props.inputValue}
+                    placeholder={props.inputValue}
                     style={{ width: '250px', marginRight: '10px' }}
-                    onChange={this.props.changeInputValue}
-                    value={this.props.inputValue}
+                    onChange={props.changeInputValue}
+                    value={props.inputValue}
                 />
                 <Button
                     type="primary"
-                    onClick={this.props.addItem}
+                    onClick={props.addItem}
                 >增加</Button>
             </div>
             <div style={{ margin: '10px', width: '300px' }}>
                 <List
                     bordered
                     //关键代码-----------start
-                    dataSource={this.props.list}
+                    dataSource={props.list}
                     //关键代码-----------end
-                    renderItem={(item, index) => (<List.Item onClick={() => { this.props.deleteItem(index) }}>{item}</List.Item>)}
+                    renderItem={(item, index) => (<List.Item onClick={() => { props.deleteItem(index) }}>{item}</List.Item>)}
                 />
             </div>
-        </div>);
-    }
+        </div>
+    );
 }
-
 export default TodoListUI;
